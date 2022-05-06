@@ -1,15 +1,11 @@
-using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using NorthWind.Entities.Exceptions;
 using NorthWind.IoC;
 using NorthWind.WebExceptionsPresenter;
-using System;
-using System.Collections.Generic;
 
 namespace NorthWind.WebApi
 {
@@ -25,13 +21,7 @@ namespace NorthWind.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers(option => option.Filters.Add(new ApiExceptionFilterAttribute(
-                new Dictionary<Type, IExceptionHandler> 
-                {
-                    { typeof(GeneralException), new GeneralExceptionHandler() },
-                    { typeof(ValidationException), new ValidationExceptionHandler() }
-                })));
+            services.AddControllers(Filters.Register);
 
             services.AddSwaggerGen(c =>
             {
