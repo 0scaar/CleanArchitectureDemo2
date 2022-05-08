@@ -3,9 +3,14 @@ using System.Linq.Expressions;
 
 namespace NorthWind.Entities.Specifications
 {
-    public abstract class Specification<T>
+    public class Specification<T>
     {
-        public Expression<Func<T, bool>> Expression { get; set; }
+        public Expression<Func<T, bool>> Expression { get; private set; }
+
+        public Specification(Expression<Func<T, bool>> expression)
+        {
+            Expression = expression;
+        }
 
         public bool IsSatisfieldBy(T entity)
         {
