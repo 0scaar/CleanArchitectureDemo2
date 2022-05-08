@@ -16,8 +16,7 @@ namespace NorthWind.UseCases.GetAllOrders
         readonly IOrderDetailRepository orderDetailRepository;
         readonly IProductRepository productRepository;
 
-        public GetAllOrdersIterator(IOrderRepository orderRepository,
-            IOrderDetailRepository orderDetailRepository,
+        public GetAllOrdersIterator(IOrderDetailRepository orderDetailRepository,
             IProductRepository productRepository
             )
         {
